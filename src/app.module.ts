@@ -4,9 +4,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { BcryptModule } from './bcrypt/bcrypt.module';
 import { ConfigModule } from '@nestjs/config';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(),MongooseModule.forRoot(process.env.MONGO_URL), UserModule, AuthModule, BcryptModule],
+  imports: [ConfigModule.forRoot(),MongooseModule.forRoot(process.env.MONGO_URL), UserModule, AuthModule, BcryptModule, AdminModule],
   controllers: [],
   providers: [],
 })
