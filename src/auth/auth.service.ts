@@ -21,16 +21,13 @@ export class AuthService {
     }
 
     async validateUser(user:IUser,password:string): Promise<IUser> {
-        console.log("validateUser",user,password);
         if (user) {
             const isValidPass = await this.bcryptService.comparePassword(password, user.password);
             if (!isValidPass) {
-                console.log("Invalid Password");
                 return null;
             }
             return user;
         } else {
-            console.log("User Not Found");
             return null;
         }
     }

@@ -34,7 +34,8 @@ export class UserService {
   }
 
   async update(id: string, updateUserDto: UserCreationDto) {
-    return this.userModel.findByIdAndUpdate(id, { ...updateUserDto, $inc: { __v: 1 } }, { new: true }).select("-password").lean();
+    updateUserDto.password = await this.bcryptService.encryptPassword(updateUserDto.password);
+    return this.userModel.findByIdAndUpdate(id, { password:'', $inc: { __v: 1 } }, { new: true }).select("-password").lean();
   }
 
   async remove(id: string) {

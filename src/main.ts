@@ -11,6 +11,7 @@ async function bootstrap() {
     .setTitle('Blog API')
     .setDescription('RESTful API to manage users, posts and authentication for a blog')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
