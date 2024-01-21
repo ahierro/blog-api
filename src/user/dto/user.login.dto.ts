@@ -1,8 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDefined, IsNotEmpty } from "class-validator";
+import { IsNotEmpty } from "class-validator";
 import { IUser } from "src/auth/types/IUser";
 
-export class UserCreationDto implements IUser {
+export class UserLoginDto {
     @ApiProperty({ name: 'username', description: 'User name', required: true })
     @IsNotEmpty()
     username: string;
@@ -10,8 +10,4 @@ export class UserCreationDto implements IUser {
     @ApiProperty({ name: 'password', description: 'User password', required: true })
     @IsNotEmpty()
     password: string;
-
-    @ApiProperty({ name: 'isAdmin', description: 'If true, it has access to admin endpoints', required: true })
-    @IsDefined()
-    isAdmin: boolean;
 }

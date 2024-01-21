@@ -1,15 +1,19 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UseFilters, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseFilters, UseGuards, Request } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserCreationDto } from './dto/user.creation.dto';
 import { MongoExceptionFilter } from '../shared/exception-filters/MongoExceptionFilter';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { MongoIdPipe } from 'src/shared/pipes/MongoIdPipe';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
+import { AuthService } from './../auth/auth.service';
+import { UserLoginDto } from './dto/user.login.dto';
 
 @ApiTags('users')
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService, private readonly authService: AuthService) { }
 
   @Post()
   @UseFilters(MongoExceptionFilter)
@@ -71,5 +75,18 @@ export class UserController {
   })
   async remove(@Param('id', MongoIdPipe) id: string) {
     return this.userService.remove(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get("/profile")
+  getProfile(@Request() req) {
+    return req.user;
+  }
+
+  @UseGuards(LocalAuthGuard)
+  @ApiOperation({ summary: 'Login' })
+  @Post("/login")
+  async login(@Request() req, @Body() requestBody: UserLoginDto) {
+    return this.authService.login(req.user);
   }
 }
