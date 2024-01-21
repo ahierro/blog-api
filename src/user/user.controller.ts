@@ -49,13 +49,11 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve a single user.' })
   @ApiResponse({ status: 200, description: 'The record has been successfully retrieved.', type: UserDto })
   @ApiResponse({ status: 400, description: 'Bad request.', type: BadRequestDTO })
-  @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 404, description: 'The record does not exist.' })
   @ApiParam({
     name: 'id',
