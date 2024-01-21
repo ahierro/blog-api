@@ -1,13 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class BcryptService {
 
-    saltRounds = 10;
+    constructor(private configService: ConfigService) {}
 
     async encryptPassword(password: string): Promise<string> {
-        return await bcrypt.hash(password, this.saltRounds);
+        const saltRounds: number = +this.configService.get<number>('BCRYPT_SALT_ROUNDS');
+        return await bcrypt.hash(password, saltRounds);
     }
 
     async comparePassword(password: string, hash: string): Promise<boolean> {

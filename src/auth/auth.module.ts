@@ -6,12 +6,13 @@ import { UserModule } from 'src/user/user.module';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [PassportModule, JwtModule.register({
-    secret: "S3Cr3t",
+  imports: [ConfigModule.forRoot(),PassportModule, JwtModule.register({
+    secret: process.env.JWT_SECRET,
     signOptions: {
-      expiresIn: '24h'
+      expiresIn: process.env.EXPIRES_IN
     }
   }), forwardRef(() => UserModule), BcryptModule],
   controllers: [],
