@@ -18,7 +18,22 @@ export class PostService {
   findAll() {
     return this.postModel.find().lean();
   }
-
+  search(filters: any) {
+    const query: any = {};
+    if (filters.category) {
+      query.categories = filters.category;
+    }
+    if (filters.author) {
+      query.author = filters.author;
+    }
+    if (filters.title) {
+      query.title = filters.title;
+    }
+    if (filters.content) {
+      query.content = filters.content;
+    }
+    return this.postModel.find(query).lean();
+  }
   findOne(id: string) {
     return this.postModel.findById(id).lean();
   }

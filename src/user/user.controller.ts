@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UseFilters, UseGuards, Request } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseFilters, UseGuards, Request, HttpCode } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserCreationDto } from './dto/user.creation.dto';
 import { MongoExceptionFilter } from '../shared/exception-filters/MongoExceptionFilter';
@@ -24,6 +24,7 @@ export class UserController {
   @ApiResponse({ status: 200, description: 'Login successful', type: Token })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @Post("/login")
+  @HttpCode(200)
   async login(@Request() req, @Body() requestBody: UserLoginDto) {
     return this.authService.login(req.user);
   }
