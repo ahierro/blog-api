@@ -14,7 +14,7 @@ import { OwnProfileOrAdmin } from 'src/auth/guards/own-profile-or-admin.guard';
 import { Token } from './dto/token.dto';
 import { BadRequestDTO } from 'src/shared/dto/BadRequest.dto';
 
-@ApiTags('users')
+@ApiTags('Users')
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService, private readonly authService: AuthService) { }
@@ -31,9 +31,9 @@ export class UserController {
   @Post()
   @UseFilters(MongoExceptionFilter)
   @ApiOperation({ summary: 'Register a new user.', description:'Saves the user in the database and encrypts their password for security.' })
-  @ApiResponse({ status: 201, description: 'The record has been successfully created.', type: UserDto })
+  @ApiResponse({ status: 201, description: 'The user has been successfully created.', type: UserDto })
   @ApiResponse({ status: 400, description: 'Bad request.', type: BadRequestDTO })
-  @ApiResponse({ status: 409, description: 'The record already exists.' })
+  @ApiResponse({ status: 409, description: 'The user already exists.' })
   async create(@Body() createUserDto: UserCreationDto) {
     return this.userService.create(createUserDto);
   }
@@ -52,9 +52,9 @@ export class UserController {
   @ApiBearerAuth()
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve a single user.' })
-  @ApiResponse({ status: 200, description: 'The record has been successfully retrieved.', type: UserDto })
+  @ApiResponse({ status: 200, description: 'The user has been successfully retrieved.', type: UserDto })
   @ApiResponse({ status: 400, description: 'Bad request.', type: BadRequestDTO })
-  @ApiResponse({ status: 404, description: 'The record does not exist.' })
+  @ApiResponse({ status: 404, description: 'The user does not exist.' })
   @ApiParam({
     name: 'id',
     type: 'string',
@@ -69,11 +69,11 @@ export class UserController {
   @ApiBearerAuth()
   @Put(':id')
   @ApiOperation({ summary: 'Update a single user.(only for admins or own user)', description:"Saves the user in the database and encrypts their password for security. Ensures that a user cannot change other user's passwords or elevate their own privileges to admin unless they are already an admin." })
-  @ApiResponse({ status: 200, description: 'The record has been successfully updated.', type: UserDto })
+  @ApiResponse({ status: 200, description: 'The user has been successfully updated.', type: UserDto })
   @ApiResponse({ status: 400, description: 'Bad request.', type: BadRequestDTO })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiResponse({ status: 404, description: 'The record does not exist.' })
+  @ApiResponse({ status: 404, description: 'The user does not exist.' })
   @ApiParam({
     name: 'id',
     type: 'string',
@@ -88,11 +88,11 @@ export class UserController {
   @ApiBearerAuth()
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a single user. (only for admins)' })
-  @ApiResponse({ status: 200, description: 'The record has been successfully deleted.', type: UserDto })
+  @ApiResponse({ status: 200, description: 'The user has been successfully deleted.', type: UserDto })
   @ApiResponse({ status: 400, description: 'Bad request.', type: BadRequestDTO })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiResponse({ status: 404, description: 'The record does not exist.' })
+  @ApiResponse({ status: 404, description: 'The user does not exist.' })
   @ApiParam({
     name: 'id',
     type: 'string',

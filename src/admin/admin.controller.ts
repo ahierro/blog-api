@@ -7,7 +7,7 @@ import { UserDto } from 'src/user/dto/user.dto';
 import { BadRequestDTO } from 'src/shared/dto/BadRequest.dto';
 import { MongoIdPipe } from 'src/shared/pipes/MongoIdPipe';
 
-@ApiTags('admin')
+@ApiTags('Administration')
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
@@ -27,11 +27,11 @@ export class AdminController {
   @ApiBearerAuth()
   @Delete('/users/:id')
   @ApiOperation({ summary: 'Remove user. (only for admins)' })
-  @ApiResponse({ status: 200, description: 'The record has been successfully deleted.', type: UserDto })
+  @ApiResponse({ status: 200, description: 'The user has been successfully deleted.', type: UserDto })
   @ApiResponse({ status: 400, description: 'Bad request.', type: BadRequestDTO })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @ApiResponse({ status: 404, description: 'The record does not exist.' })
+  @ApiResponse({ status: 404, description: 'The user does not exist.' })
   remove(@Param('id', MongoIdPipe) id: string) {
     return this.adminService.remove(id);
   }
