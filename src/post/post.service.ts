@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -10,6 +10,7 @@ import { PostDto } from './dto/post.dto';
 
 @Injectable()
 export class PostService {
+  private readonly logger = new Logger(PostService.name);
 
   constructor(@InjectModel(Post.name) private postModel: Model<Post>) { }
 
@@ -21,6 +22,8 @@ export class PostService {
     return this.postModel.find().lean();
   }
   async search(filters: any) {
+    this.logger.log('search:',filters);
+
     const query: any = {};
     if (filters.category) {
       query.categories = filters.category;
