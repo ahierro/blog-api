@@ -39,10 +39,10 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @UseGuards(JwtAuthGuard,AdminGuard)
+  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Get()
-  @ApiOperation({ summary: 'Retrieve all users. (only for admins)' })
+  @ApiOperation({ summary: 'Retrieve all users.' })
   @ApiResponse({ status: 200, description: 'Users returned successfully', type: [UserDto] })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
