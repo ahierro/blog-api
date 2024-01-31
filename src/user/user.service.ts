@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { IUser } from 'src/auth/types/IUser';
-import { BcryptService } from 'src/bcrypt/bcrypt.service';
+import { IUser } from '../auth/types/IUser';
 import { UserCreationDto } from './dto/user.creation.dto';
 import { User } from './schemas/user.schema';
+import { BcryptService } from '../bcrypt/bcrypt.service';
 
 @Injectable()
 export class UserService {

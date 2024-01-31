@@ -17,8 +17,17 @@ describe('AppController (e2e)', () => {
 
   it('/ (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .get('/search')
       .expect(200)
-      .expect('Hello World!');
+      .expect('This action returns all search');
   });
+  beforeAll(done => {
+    done()
+  })
+  
+  afterAll(done => {
+    // Closing the DB connection allows Jest to exit successfully.
+    // mongoose.connection.close()
+    done()
+  })
 });

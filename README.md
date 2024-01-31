@@ -1,78 +1,79 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Blog API
 
 ## Description
+This project is a REST API for a blog that manages users, posts and authentication.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Technologies used in this project
+- Node.js
+- NestJS
+- MongoDB
+- Mongoose
+- Typescript
+- Swagger
+- Passport JWT
+- Passport Local
+- Bcrypt
 
-##
-
-Swagger http://localhost:3000/api
-
-
-## Installation
-
-```bash
-$ npm install
+## Run Locally
+- Make sure you have installed Node.js version 20.10.0 and MongoDB
+- Make sure you have a .env file with the environment variables
+- Make sure MongoDb is running
+- The application will be available at http://localhost:3000
+- You can access the Swagger documentation at http://localhost:3000/api
+- The .env file should be placed at root folder and contain the following environment variables:
+```dotenv
+MONGO_URL=mongodb://localhost:27017/blog
+JWT_SECRET=S3Cr3t
+EXPIRES_IN=24h
+BCRYPT_SALT_ROUNDS=10
 ```
-
-## Running the app
-
+- Make sure you have installed the NestJS CLI if you are going to run the application in dev mode
 ```bash
+npm i -g @nestjs/cli
+```
+```bash
+# install dependencies
+npm install
+
 # development
-$ npm run start
+npm run start
 
 # watch mode
-$ npm run start:dev
+npm run start:dev
 
 # production mode
-$ npm run start:prod
+npm run start:prod
 ```
+# Run with Docker
+- It is necessary to have Docker installed and running
+- Docker will create a container with the application and another with the MongoDB database
+- The application will be available at http://localhost:3000
+- You can access the Swagger documentation at http://localhost:3000/api
 
-## Test
+- The .env file should be placed at root folder and contain the following environment variables:
+```dotenv
+MONGO_URL=mongodb://mongo:27017/blog
+JWT_SECRET=S3Cr3t
+EXPIRES_IN=24h
+BCRYPT_SALT_ROUNDS=10
+```
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker compose up --build
 ```
 
-## Support
+## Swagger Docs
+http://localhost:3000/api
+![swagger](/pictures/swagger_api.JPG "Swagger")
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Authentication
 
-## Stay in touch
+### Register a user
+![register](/pictures/register.JPG "register")
+### Login and copy JWT token that is returned on the response body
+![login](/pictures/login.JPG "login")
+### Click on Authorize Button
+![auth_button](/pictures/auth_button.JPG "auth_button")
+### Paste the token and click on Authorize
+![auth_pop_up](/pictures/auth_pop_up.JPG "auth_pop_up")
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).

@@ -1,8 +1,8 @@
 import { Body, Controller, DefaultValuePipe, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Request, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { BadRequestDTO } from 'src/shared/dto/BadRequest.dto';
-import { MongoIdPipe } from 'src/shared/pipes/MongoIdPipe';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { BadRequestDTO } from '../shared/dto/BadRequest.dto';
+import { MongoIdPipe } from '../shared/pipes/MongoIdPipe';
 import { PagedPostDTO } from './dto/PagedPost.dto';
 import { CreatePostDto } from './dto/create-post.dto';
 import { PostDto } from './dto/post.dto';

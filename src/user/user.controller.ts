@@ -4,15 +4,15 @@ import { UserCreationDto } from './dto/user.creation.dto';
 import { MongoExceptionFilter } from '../shared/exception-filters/MongoExceptionFilter';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
-import { MongoIdPipe } from 'src/shared/pipes/MongoIdPipe';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
+import { MongoIdPipe } from '../shared/pipes/MongoIdPipe';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { LocalAuthGuard } from '../auth/guards/local-auth.guard';
 import { AuthService } from './../auth/auth.service';
 import { UserLoginDto } from './dto/user.login.dto';
-import { AdminGuard } from 'src/auth/guards/admin.guard';
-import { OwnProfileOrAdmin } from 'src/auth/guards/own-profile-or-admin.guard';
+import { AdminGuard } from '../auth/guards/admin.guard';
+import { OwnProfileOrAdmin } from '../auth/guards/own-profile-or-admin.guard';
 import { Token } from './dto/token.dto';
-import { BadRequestDTO } from 'src/shared/dto/BadRequest.dto';
+import { BadRequestDTO } from '../shared/dto/BadRequest.dto';
 
 @ApiTags('Users')
 @Controller('users')

@@ -1,4 +1,4 @@
-MONGO_URL=mongodb://mongo:27017/blog
+MONGO_URL=mongodb://localhost:27017/blog
 JWT_SECRET=S3Cr3t
 EXPIRES_IN=24h
 BCRYPT_SALT_ROUNDS=10

@@ -4,8 +4,8 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Post } from './schemas/post.schema';
 import { Model } from 'mongoose';
-import { UserJwt } from 'src/shared/interfaces/UserJwt';
-import { PagedResultDTO } from 'src/shared/dto/PagedResult.dt';
+import { UserJwt } from '../shared/interfaces/UserJwt';
+import { PagedResultDTO } from '../shared/dto/PagedResult.dt';
 import { PostDto } from './dto/post.dto';
 
 @Injectable()

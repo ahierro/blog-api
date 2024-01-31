@@ -1,12 +1,12 @@
 import { Controller, DefaultValuePipe, Delete, Get, Param, ParseIntPipe, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AdminGuard } from 'src/auth/guards/admin.guard';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { AdminGuard } from '../auth/guards/admin.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AdminService } from './admin.service';
-import { UserDto } from 'src/user/dto/user.dto';
-import { BadRequestDTO } from 'src/shared/dto/BadRequest.dto';
-import { MongoIdPipe } from 'src/shared/pipes/MongoIdPipe';
-import { PagedPostDTO } from 'src/post/dto/PagedPost.dto';
+import { UserDto } from '../user/dto/user.dto';
+import { BadRequestDTO } from '../shared/dto/BadRequest.dto';
+import { MongoIdPipe } from '../shared/pipes/MongoIdPipe';
+import { PagedPostDTO } from '../post/dto/PagedPost.dto';
 import { PostService } from './../post/post.service';
 
 @ApiTags('Administration')

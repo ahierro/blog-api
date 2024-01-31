@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDefined, IsNotEmpty } from "class-validator";
-import { IUser } from "src/auth/types/IUser";
+import { IUser } from "../../auth/types/IUser";
 
 export class UserCreationDto implements IUser {
     @ApiProperty({ name: 'username', description: 'User name', required: true })
