@@ -13,6 +13,8 @@ This project is a REST API for a blog that manages users, posts and authenticati
 - Passport JWT
 - Passport Local
 - Bcrypt
+- Docker
+- Testcontainers (for e2e tests, used for starting a mongoDB container)
 
 ## Run Locally
 - Make sure you have installed Node.js version 20.10.0 and MongoDB
@@ -60,6 +62,12 @@ BCRYPT_SALT_ROUNDS=10
 
 ```bash
 docker compose up --build
+```
+
+## Run e2e tests
+- e2e tests are written using Jest, Supertest and Testcontainers (It requires Docker installed and running)
+```bash
+npm run test:e2e
 ```
 
 ## Swagger Docs
